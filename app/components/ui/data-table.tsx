@@ -78,7 +78,7 @@ export default function DataTable({ data, headers}: DataTableProps) {
         </Table>
       </TableContainer>
 
-      <div className="flex flex-row justify-center mt-4 gap-4">
+      <div className="flex flex-row justify-center mt-8 gap-4">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

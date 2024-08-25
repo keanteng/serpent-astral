@@ -44,7 +44,7 @@ export default function Products() {
                 </Heading>
             </div>
 
-            <div className="flex flex-row gap-4 mt-4 md:w-4/5">
+            <div className="flex flex-row gap-5 mt-4 md:w-4/5">
                 <SearchBar />
                 <CreateButton />
             </div>
