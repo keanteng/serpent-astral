@@ -68,7 +68,7 @@ export default function DataTable({ data, headers}: DataTableProps) {
                 <Td>{item.age}</Td>
                 <Td>
                   <div className="flex flex-row gap-3 justify-center">
-                    <EditButton />
+                    <EditButton id={JSON.stringify(item.id)} />
                     <DeleteButton />
                   </div>
                 </Td>
