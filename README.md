@@ -27,11 +27,12 @@ You can also use my script for fast deployement, make sure your Prisma is config
 
 ## 🪫Progress
 
-- Create data ❌
-- Delete data ❌
+- Create data ✔️
+- Delete data ✔️
 - Update data ✔️
 - Retrieve data ✔️
 - Study the API route and rework the components and UI for better project scaling - thee're scattering everywhere. Works on datatype for standaridzation as well ❌
+- Data refresh on delete ❌
 
 
 ## Inspiration
