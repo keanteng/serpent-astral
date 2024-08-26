@@ -2,6 +2,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Heading,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { filterDataByID } from '@/app/components/crud/actions';
@@ -21,18 +22,21 @@ export default async function Page({ params }: { params: { id: string }}) {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard/products/1">
+                <BreadcrumbLink href="/dashboard/products/1" isCurrentPage>
                     {id}
                 </BreadcrumbLink>
             </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink href="#">Edit</BreadcrumbLink>
+            <BreadcrumbItem>
+                <BreadcrumbLink href="#" isCurrentPage>Edit</BreadcrumbLink>
             </BreadcrumbItem>
         </Breadcrumb>
-        <>
-        {data && <EditForm data={data} />}
-        </>
+        <Heading>
+            Spectral Astral Products
+        </Heading>
+        <div>
+            {data && <EditForm data={data} />}
+        </div>
     </main>
     );
 }

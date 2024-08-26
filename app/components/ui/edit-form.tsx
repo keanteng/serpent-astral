@@ -1,6 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import {
+    Box,
+    Button,
+    Input
+} from '@chakra-ui/react';
 
 interface FormData {
     id: number;
@@ -50,25 +55,27 @@ const EditForm: React.FC<EditFormProps> = ({ data }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>Age:</label>
-                <input
-                    type="number"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit">Update</button>
+            <Box className='flex flex-col mt-4 mb-3 gap-2 w-60'>
+                <div className='flex flex-row items-center gap-3'>
+                    <label>Name: </label>
+                    <Input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='flex flex-row items-center gap-3'>
+                    <label>Age: </label>
+                    <Input
+                        type="number"
+                        name="age"
+                        value={formData.age}
+                        onChange={handleChange}
+                    />
+                </div>
+            </Box>
+            <Button type="submit">Update</Button>
         </form>
     );
 };
