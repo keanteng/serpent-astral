@@ -69,7 +69,7 @@ export default function DataTable({ data, headers}: DataTableProps) {
                 <Td>
                   <div className="flex flex-row gap-3 justify-center">
                     <EditButton id={JSON.stringify(item.id)} />
-                    <DeleteButton />
+                    <DeleteButton id={item.id.toString()}/>
                   </div>
                 </Td>
               </Tr>

@@ -28,6 +28,7 @@ export default function CreateProducts() {
                 },
                 body: JSON.stringify(formData)
             });
+            alert('User created');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
