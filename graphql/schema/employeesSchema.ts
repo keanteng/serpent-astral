@@ -1,6 +1,8 @@
 import { gql } from 'graphql-tag';
 
 export const employeesTypeDefs = gql`
+    scalar DateTime
+
     type Employee {
         id: String!
         age: Int!
