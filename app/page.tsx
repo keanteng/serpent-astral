@@ -2,6 +2,8 @@ import {
   Box,
   Text,
   Heading,
+  UnorderedList as List,
+  ListItem,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { GlobeAsiaAustraliaIcon, CogIcon } from '@heroicons/react/24/outline';
@@ -36,19 +38,36 @@ export default function Home() {
             Vision
           </Heading>
           <Text className='text-lg text-white mt-3'>
-            Astral grade system to improve efficiency and reduce costs.
+            ⚡ Astral grade system to improve efficiency and reduce costs.
           </Text>
 
           <Heading size='lg' className='text-white mt-6'>
             Engine
           </Heading>
           <Text className='text-lg text-white mt-3'>
-            Powered by celetial grade inventory management system.
+            💻 Powered by celetial grade inventory management system.
           </Text>
 
-          <Text as='sub' className='mt-10 text-white'>
-            Serpent Astral Shop &copy; 2024
-          </Text>
+          <Heading size='lg' className='text-white mt-6'>
+            Reviews 🔥
+          </Heading>
+          <List spacing={3} color='white'>
+            <ListItem>
+              <Text className='text-lg text-white mt-3 font-serif italic'>
+                "I've been using Serpent Astral for years. It's the best!"
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text className='text-lg text-white mt-3 font-serif italic'>
+                "I can't imagine my life without Serpent Astral."
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text className='text-lg text-white mt-3 font-serif italic'>
+                "The best shop in the galaxy!"
+              </Text>
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </main>
