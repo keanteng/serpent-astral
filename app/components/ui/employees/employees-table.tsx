@@ -17,7 +17,7 @@ import { EmployeeType } from "@/app/library/employees-definitions";
 import Pagination from "../pagination";
 import TableSkeleton from "./table-skeleton";
 import EmployeeCard from "./employee-card";
-import Image from "next/image";
+import EmployeeDrawer from "./employee-drawer";
 
 export default function EmployeesTable() {
     const [loading, setLoading] = useState(true);
@@ -25,6 +25,9 @@ export default function EmployeesTable() {
     const [data, setData] = useState<{ employees: EmployeeType[] } | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(12);
+
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [selectedEmployee, setSelectedEmployee] = useState<EmployeeType | null>(null);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentData = data?.employees.slice(startIndex, startIndex + itemsPerPage);
@@ -34,6 +37,17 @@ export default function EmployeesTable() {
       setItemsPerPage(Number(event.target.value));
       setCurrentPage(1); // Reset to first page when items per page changes
     };
+
+    const openDrawer = (employee: EmployeeType) => {
+      setSelectedEmployee(employee);
+      setIsDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+      setIsDrawerOpen(false);
+      setSelectedEmployee(null);
+  };
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,11 +63,23 @@ export default function EmployeesTable() {
                   query GetEmployees {
                     employees {
                       id
+                      age
                       name
-                      email
-                      role
+                      gender
+                      date_of_birth
+                      address
+                      state
                       phone_number
                       email
+                      nationality
+                      resident_status
+                      marital_status
+                      role
+                      salary
+                      hire_date
+                      epf_number
+                      socso_number
+                      bank_account
                     }
                   }
                 `,
@@ -81,10 +107,12 @@ export default function EmployeesTable() {
 
     return (
       <main>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {currentData?.map((employee) => {
             return (
-              <EmployeeCard key={employee.id} {...employee} />
+              <div key={employee.id} onClick={() => openDrawer(employee)}>
+                <EmployeeCard {...employee} />
+              </div>
           );
         })}
         </div>
@@ -105,6 +133,7 @@ export default function EmployeesTable() {
             <Text className="flex text-base whitespace-nowrap"><span>items per page</span></Text>
           </div>
         </div>
+        <EmployeeDrawer isOpen={isDrawerOpen} onClose={closeDrawer} employee={selectedEmployee} />
       </main>
     )
 }

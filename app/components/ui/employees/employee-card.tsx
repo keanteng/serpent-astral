@@ -9,27 +9,28 @@ import {
 } from "@heroicons/react/24/outline";
 
 export default function EmployeeCard(employee: EmployeeType) {
+
     return (
-        <div className="flex flex-col max-w-60 text-xs shadow-xl rounded-xl p-2">
+        <div className="flex flex-col max-w-80 text-xs shadow-xl rounded-xl p-2 cursor-pointer">
             <Image 
             src = {`https://i.pravatar.cc/250?u=${employee.id}`}
             alt = {employee.name}
-            width = {240}
-            height = {100}
+            width = {80}
+            height = {80}
             unoptimized
-            className="rounded-lg mb-2"
+            className="rounded-full mb-2 self-center shadow-md"
             />
-            <div className="flex flex-col items-center justify-center mb-2">
+            <div className="flex flex-col items-center justify-center mb-2 mt-2">
                 <Text className="font-bold">{employee.name}</Text>
                 <Text>{employee.role}</Text>
             </div>
             
-            <div className="flex flex-row gap-2 items-center justify-center">
-                <PhoneIcon className="h-4 w-4" />
+            <div className="flex flex-row gap-2 items-center justify-center mb-1">
+                <PhoneIcon className="h-3 w-3" />
                 <Text>{employee.phone_number}</Text>
             </div>
-            <div className="flex flex-row gap-2 items-center justify-center">
-                <EnvelopeIcon className="h-4 w-4" />
+            <div className="flex flex-row gap-2 items-center justify-center mb-2">
+                <EnvelopeIcon className="h-3 w-3" />
                 <Text>{employee.email}</Text>
             </div>
       </div>
