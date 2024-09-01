@@ -16,9 +16,10 @@ interface EmployeeDrawerProps {
     onClose: () => void;
     employee: EmployeeType | null;
     onDelete: () => void;
+    onEdit: () => void;
 }
 
-const EmployeeDrawer = ({ isOpen, onClose, employee, onDelete }: EmployeeDrawerProps) => {
+const EmployeeDrawer = ({ isOpen, onClose, employee, onDelete, onEdit }: EmployeeDrawerProps) => {
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose} size='md'>
       <DrawerOverlay />
@@ -27,7 +28,7 @@ const EmployeeDrawer = ({ isOpen, onClose, employee, onDelete }: EmployeeDrawerP
         <DrawerHeader>Employee Details</DrawerHeader>
 
         <DrawerBody>
-          <EmployeeEditForm employee={employee} onDelete={onDelete} />
+          <EmployeeEditForm employee={employee} onDelete={onDelete} onEdit={onEdit} />
         </DrawerBody>
 
       </DrawerContent>

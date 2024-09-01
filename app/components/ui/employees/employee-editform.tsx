@@ -10,13 +10,15 @@ import {
 import { EmployeeType } from '@/app/library/employees-definitions';
 import Image from 'next/image';
 import EmployeeDeleteButton from './employee-delete-button';
+import { on } from 'events';
 
 interface EditFormProps {
     employee: EmployeeType | null;
     onDelete: () => void;
+    onEdit: () => void;
 }
 
-const EmployeeEditForm: React.FC<EditFormProps> = ({ employee, onDelete }) => {
+const EmployeeEditForm: React.FC<EditFormProps> = ({ employee, onDelete, onEdit }) => {
     const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
     const defaultEmployee: EmployeeType = {
@@ -56,9 +58,10 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee, onDelete }) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
         await updateEmployeeData(formData);
+        onEdit();
     };
 
-    const updateEmployeeData = async (employeeData: EmployeeType) => {
+    const updateEmployeeData = async (employeeData: EmployeeType): Promise<any> => {
         const mutation = `
             mutation UpdateEmployee($input: EmployeeUpdateInput!) {
                 updateEmployee(input: $input) {
@@ -327,10 +330,10 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee, onDelete }) => {
                 </div>
             </div>
             <div className='flex flex-row-reverse gap-2 mt-8'>
+                <EmployeeDeleteButton onDelete={onDelete} id={formData.id} />
                 <Button bg='black' textColor='white' _hover={{ bg: 'yellow.500', textColor: 'black' }} type='submit' onClick={handleSubmit}>
                     <span>Save Edits</span>
                 </Button>
-                <EmployeeDeleteButton onDelete={onDelete} id={formData.id} />
             </div>
         </form>
     );

@@ -132,7 +132,7 @@ export default function EmployeesTable() {
             <Text className="flex text-base whitespace-nowrap"><span>items per page</span></Text>
           </div>
         </div>
-        <EmployeeDrawer isOpen={isDrawerOpen} onClose={closeDrawer} employee={selectedEmployee} onDelete={fetchData} />
+        <EmployeeDrawer isOpen={isDrawerOpen} onClose={closeDrawer} employee={selectedEmployee} onDelete={fetchData} onEdit={fetchData} />
       </main>
     )
 }
