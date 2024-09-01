@@ -52,5 +52,6 @@ export const employeesTypeDefs = gql`
     type Mutation {
         updateEmployee(input: EmployeeUpdateInput!): Employee
         createEmployee(input: EmployeeUpdateInput!): Employee
+        deleteEmployee(id: String!): Employee
     }
 `

@@ -56,8 +56,13 @@ const EmployeeCreateForm: React.FC= () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        await createEmployeeData(formData);
+        const formattedData = {
+            ...formData,
+            date_of_birth: new Date(formData.date_of_birth).toISOString(),
+            hire_date: new Date(formData.hire_date).toISOString(),
+        };
+        console.log('Form submitted:', formattedData);
+        await createEmployeeData(formattedData);
     };
 
     const createEmployeeData = async(data: EmployeeType) => {

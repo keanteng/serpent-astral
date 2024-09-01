@@ -48,59 +48,58 @@ export default function EmployeesTable() {
       setSelectedEmployee(null);
   };
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            // 2 seconds delay to simulate network request
-            const response = await fetch('/api/graphql', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                query: `
-                  query GetEmployees {
-                    employees {
-                      id
-                      age
-                      name
-                      gender
-                      date_of_birth
-                      address
-                      state
-                      phone_number
-                      email
-                      nationality
-                      resident_status
-                      marital_status
-                      role
-                      salary
-                      hire_date
-                      epf_number
-                      socso_number
-                      bank_account
-                    }
-                  }
-                `,
-              }),
-            });
-    
-            const result = await response.json();
-            if (result.errors) {
-              throw new Error(result.errors[0].message);
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query GetEmployees {
+              employees {
+                id
+                age
+                name
+                gender
+                date_of_birth
+                address
+                state
+                phone_number
+                email
+                nationality
+                resident_status
+                marital_status
+                role
+                salary
+                hire_date
+                epf_number
+                socso_number
+                bank_account
+              }
             }
-    
-            setData(result.data);
-            setLoading(false);
-          } catch (error) {
-            setError(error as Error);
-            setLoading(false);
-          }
-        };
-    
-        fetchData();
-      }, []);
+          `,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.errors) {
+        throw new Error(result.errors[0].message);
+      }
+
+      setData(result.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error as Error);
+      setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {  
+      fetchData();
+    }, []);
 
     if (loading) return <TableSkeleton />;
     if (error) return <p>Error: {error.message}</p>;
@@ -133,7 +132,7 @@ export default function EmployeesTable() {
             <Text className="flex text-base whitespace-nowrap"><span>items per page</span></Text>
           </div>
         </div>
-        <EmployeeDrawer isOpen={isDrawerOpen} onClose={closeDrawer} employee={selectedEmployee} />
+        <EmployeeDrawer isOpen={isDrawerOpen} onClose={closeDrawer} employee={selectedEmployee} onDelete={fetchData} />
       </main>
     )
 }

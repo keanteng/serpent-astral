@@ -42,5 +42,10 @@ export const employeesResolvers = {
                 data: input,
             });
         },
+        deleteEmployee: async (_: any, {id}:{id:string}) => {
+            return prisma.employee.delete({
+                where: { id },
+            });
+        },
     }
 }

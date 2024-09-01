@@ -11,12 +11,12 @@ import { EmployeeType } from '@/app/library/employees-definitions';
 import Image from 'next/image';
 import EmployeeDeleteButton from './employee-delete-button';
 
-
 interface EditFormProps {
     employee: EmployeeType | null;
+    onDelete: () => void;
 }
 
-const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
+const EmployeeEditForm: React.FC<EditFormProps> = ({ employee, onDelete }) => {
     const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
     const defaultEmployee: EmployeeType = {
@@ -327,10 +327,10 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                 </div>
             </div>
             <div className='flex flex-row-reverse gap-2 mt-8'>
-                <EmployeeDeleteButton />
                 <Button bg='black' textColor='white' _hover={{ bg: 'yellow.500', textColor: 'black' }} type='submit' onClick={handleSubmit}>
                     <span>Save Edits</span>
                 </Button>
+                <EmployeeDeleteButton onDelete={onDelete} id={formData.id} />
             </div>
         </form>
     );
