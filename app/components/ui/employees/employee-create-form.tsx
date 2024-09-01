@@ -1,38 +1,32 @@
 'use client';
-
-import { useState } from 'react';
-import { 
-    Box, 
-    Button, 
+import { useState, useEffect } from 'react';
+import {
+    Box,
+    Button,
     Input,
-    Text
+    Text,
+    Select
 } from '@chakra-ui/react';
 import { EmployeeType } from '@/app/library/employees-definitions';
-import Image from 'next/image';
-import EmployeeDeleteButton from './employee-delete-button';
 
 
-interface EditFormProps {
-    employee: EmployeeType | null;
-}
-
-const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
+const EmployeeCreateForm: React.FC= () => {
     const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
     const defaultEmployee: EmployeeType = {
         id: '',
         age: 0,
         name: '',
-        gender: '',
+        gender: 'Male',
         date_of_birth: formatDate(new Date()),
         address: '',
         state: '',
         phone_number: '',
         email: '',
-        nationality: '',
-        resident_status: '',
-        marital_status: '',
-        role: '',
+        nationality: 'Malaysian',
+        resident_status: 'Citizen',
+        marital_status: 'Single',
+        role: 'Driver',
         salary: 0,
         hire_date: formatDate(new Date()),
         epf_number: 0,
@@ -41,8 +35,16 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
     };
 
     const [formData, setFormData] = useState<EmployeeType>(
-        employee || defaultEmployee
+        defaultEmployee
     );
+
+    useEffect(() => {
+        const uuid = crypto.randomUUID().replace(/-/g, '');
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            id: uuid,
+        }));
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -55,13 +57,13 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        await updateEmployeeData(formData);
+        await createEmployeeData(formData);
     };
 
-    const updateEmployeeData = async (employeeData: EmployeeType) => {
+    const createEmployeeData = async(data: EmployeeType) => {
         const mutation = `
-            mutation UpdateEmployee($input: EmployeeUpdateInput!) {
-                updateEmployee(input: $input) {
+            mutation CreateEmployee($input: EmployeeUpdateInput!) {
+                createEmployee(input: $input) {
                     id
                     name
                     age
@@ -80,7 +82,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                     epf_number
                     socso_number
                     bank_account
-                }
+                }           
             }
         `;
         const response = await fetch('/api/graphql', {
@@ -91,7 +93,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
             body: JSON.stringify({
                 query: mutation,
                 variables: {
-                    input: employeeData,
+                    input: data,
                 },
             }),
         });
@@ -102,19 +104,11 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className='flex flex-col mt-4 mb-3'>
-                <Image 
-                src = {`https://i.pravatar.cc/250?u=${formData.id}`}
-                alt = {formData.name}
-                width = {140}
-                height = {140}
-                unoptimized
-                className="rounded-full mb-2 self-center shadow-md"
-                />
+            <div className='flex flex-col mb-3'>
                 <div className='flex flex-col w-96 gap-2 mt-6'>
                     <div className='flex flex-row items-center justify-between'>
                         <Text className='font-bold' >ID</Text>
-                        <span className='break-all text-sm font-mono w-60'>{formData.id}</span>
+                        <span className='break-all text-sm font-mono w-60' >{formData.id}</span>
                     </div>
 
                     <div className='flex flex-row items-center justify-between'>
@@ -126,6 +120,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Name'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -139,6 +134,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Age'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -151,6 +147,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Gender'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -164,6 +161,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Date of Birth'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -176,30 +174,33 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Address'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
                     <div className='flex flex-row items-center justify-between'>
                         <Text className='font-bold' >State</Text>
                         <Input 
-                            name='address' 
+                            name='state' 
                             value={formData.state} 
                             onChange={handleChange} 
                             placeholder='State'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
                     <div className='flex flex-row items-center justify-between'>
                         <Text className='font-bold' >Phone Number</Text>
                         <Input 
-                            name='Phone Number' 
+                            name='phone_number' 
                             value={formData.phone_number} 
                             onChange={handleChange} 
                             placeholder='Phone Number'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -212,6 +213,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Email'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -224,6 +226,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Nationality'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -236,6 +239,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Resident Status'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -248,6 +252,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Marital Status'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -260,6 +265,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Role'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -273,6 +279,7 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Salary'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -286,30 +293,35 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Hire Date'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
                     <div className='flex flex-row items-center justify-between'>
                         <Text className='font-bold' >EPF Number</Text>
                         <Input
+                            type='number'
                             name='epf_number'
                             value={formData.epf_number}
                             onChange={handleChange}
                             placeholder='EPF Number'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
                     <div className='flex flex-row items-center justify-between'>
                         <Text className='font-bold' >SOCSO Number</Text>
                         <Input
+                            type='number'
                             name='socso_number'
                             value={formData.socso_number}
                             onChange={handleChange}
                             placeholder='SOCSO Number'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
 
@@ -322,18 +334,18 @@ const EmployeeEditForm: React.FC<EditFormProps> = ({ employee }) => {
                             placeholder='Bank Account'
                             size='sm'
                             width={60}
+                            isRequired
                         />
                     </div>
                 </div>
             </div>
             <div className='flex flex-row-reverse gap-2 mt-8'>
-                <EmployeeDeleteButton />
-                <Button bg='black' textColor='white' _hover={{ bg: 'yellow.500', textColor: 'black' }} type='submit' onClick={handleSubmit}>
-                    <span>Save Edits</span>
+                <Button bg='black' textColor='white' _hover={{ bg: 'yellow.500', textColor: 'black' }} type='submit'>
+                    Create Employee
                 </Button>
             </div>
         </form>
     );
 };
 
-export default EmployeeEditForm;
+export default EmployeeCreateForm;

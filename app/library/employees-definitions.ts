@@ -14,8 +14,8 @@ export type EmployeeType = {
     role: string;
     salary: number;
     hire_date: string;
-    epf_number: string;
-    socso_number: string;
+    epf_number: number;
+    socso_number: number;
     bank_account: string;
 
 }

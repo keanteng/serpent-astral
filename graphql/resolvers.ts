@@ -8,5 +8,6 @@ export const resolvers = {
   },
   Mutation: {
     ...userResolvers.Mutation,
+    ...employeesResolvers.Mutation,
   },
 };
