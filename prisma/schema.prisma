@@ -40,3 +40,25 @@ model Employee {
   socso_number   Int
   bank_account   String
 }
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String
+  price       Float
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  customer    String
+  orderItems  OrderItem[]
+}
+
+model OrderItem {
+  id          Int         @id @default(autoincrement())
+  quantity    Int
+  productId   Int
+  orderId     Int
+  product     Product     @relation(fields: [productId], references: [id])
+  order       Order       @relation(fields: [orderId], references: [id])
+}
