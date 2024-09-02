@@ -29,9 +29,17 @@ export default function EmployeesTable() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState<EmployeeType | null>(null);
 
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredData = searchTerm
+    ? data?.employees.filter(employee =>
+        employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : data?.employees;
+
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentData = data?.employees.slice(startIndex, startIndex + itemsPerPage);
-    const totalPages = Math.ceil((data?.employees.length ?? 0) / itemsPerPage);
+    const currentData = filteredData?.slice(startIndex, startIndex + itemsPerPage);
+    const totalPages = Math.ceil((filteredData?.length ?? 0) / itemsPerPage);
 
     const handleItemsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setItemsPerPage(Number(event.target.value));
@@ -106,6 +114,13 @@ export default function EmployeesTable() {
 
     return (
       <main>
+      <input
+        type="text"
+        placeholder="Search employees..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="border p-2 rounded mb-4 w-3/5"
+      />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {currentData?.map((employee) => {
             return (

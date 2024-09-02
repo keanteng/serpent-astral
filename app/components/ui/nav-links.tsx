@@ -2,7 +2,7 @@
 
 import {
   HomeIcon,
-  BuildingStorefrontIcon,
+  ShoppingBagIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -15,7 +15,12 @@ const links = [
     name: 'Employees',
     href: '/dashboard/employees',
     icon: UserGroupIcon,
-  }
+  },
+  {
+    name: 'Products',
+    href: '/dashboard/products',
+    icon: ShoppingBagIcon,
+  },
 ];
 
 export default function NavLinks() {

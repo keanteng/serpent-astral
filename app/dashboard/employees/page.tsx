@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import EmployeeCreateButton from "@/app/components/ui/employees/employee-create-button";
-import EmployeeSearchBar from "@/app/components/ui/employees/employee-searchbar";
 
 export default function Employees() {
     return (
@@ -34,7 +33,6 @@ export default function Employees() {
                 </Text>
 
                 <div className="flex flex-row w-5/6 gap-4 mt-2">
-                    <EmployeeSearchBar />
                     <EmployeeCreateButton />
                 </div>
             </div>
