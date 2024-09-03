@@ -1,5 +1,8 @@
 # 🌏 Spectral Astral Shop
 
+> **Warning**
+> Spectral Astral Gen 2.0 maintainance ongoing👷‍♂️
+
 ![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
@@ -41,9 +44,13 @@ Here's how the CRUD process works, basicallt it involves several layers of commu
 
 ## Progress 🪫
 
-### System Gen 1.0
+### System Gen 1.0 Roadmap
 
 Performs CRUD on employees data. The UIs includes features such as pagination, items per page, drawers and also data post-CRUD data refresh. There are a lot of learnings in this stage from planning to designing until deployment. It's never easy for such a massive project.
+
+### System Gen 2.0 Raodmap
+
+Order creation. Search and query optimizatino
 
 ## License 💳
 

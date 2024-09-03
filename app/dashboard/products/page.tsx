@@ -1,6 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import {
+  Button,
+  Input
+} from '@chakra-ui/react';
 
 const AddOrderItem = () => {
   const [customer, setCustomer] = useState<string>('');
@@ -121,13 +125,13 @@ const AddOrderItem = () => {
   return (
     <div>
       <form onSubmit={handleCreateOrder}>
-        <input
+        <Input
           type="text"
           placeholder="Customer Name"
           value={customer}
           onChange={(e) => setCustomer(e.target.value)}
         />
-        <button type="submit">Create Order</button>
+        <Button type="submit">Create Order</Button>
       </form>
       {orderId && (
         <>
