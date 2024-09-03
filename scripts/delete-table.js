@@ -1,17 +1,17 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// clear the employee table
-async function clear() {
-    await prisma.order.deleteMany();
+async function main() {
+    console.log('Start deleting table...');
+    await prisma.$executeRaw`DROP TABLE IF EXISTS "order";`;
 }
 
-clear()
+main()
     .catch(e => {
         console.error(e);
         process.exit(1);
     })
     .finally(async () => {
-        console.log('Clear completed');
+        console.log('Table deletion completed');
         await prisma.$disconnect();
     });

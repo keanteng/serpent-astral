@@ -1,19 +1,22 @@
 import { userResolvers } from "./resolvers/userResolvers";
 import { employeesResolvers } from "./resolvers/employeesResolver";
-import { salesResolvers } from "./resolvers/salesResolver";
+import { ordersResolvers } from "./resolvers/ordersResolver";
+import { productsResolvers } from "./resolvers/productsResolver";
+import { orderItemsResolvers } from "./resolvers/orderItemsResolver";
 
 export const resolvers = {
   Query: {
     ...userResolvers.Query,
     ...employeesResolvers.Query,
-    ...salesResolvers.Query,
+    ...ordersResolvers.Query,
+    ...productsResolvers.Query,
+    ...orderItemsResolvers.Query,
   },
   Mutation: {
     ...userResolvers.Mutation,
     ...employeesResolvers.Mutation,
-    ...salesResolvers.Mutation,
-  },
-  OrderItem: {
-    ...salesResolvers.OrderItem,
+    ...ordersResolvers.Mutation,
+    ...productsResolvers.Mutation,
+    ...orderItemsResolvers.Mutation
   },
 };

@@ -5,14 +5,17 @@ const data = [
     {
         id: 1,
         customer: 'Kenshin Himura',
+        date: new Date('2021-09-01'),
     },
     {
         id: 2,
         customer: 'Sanosuke Sagara',
+        date: new Date('2021-09-02'),
     },
     {
         id: 3,
         customer: 'Megumi Takani',
+        date: new Date('2021-09-03'),
     },
 ];
 

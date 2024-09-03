@@ -1,7 +1,9 @@
 import { gql } from 'graphql-tag';
 import { userTypeDefs } from './schema/userSchema';
 import { employeesTypeDefs } from './schema/employeesSchema';
-import { salesTypeDefs } from './schema/salesSchema';
+import { ordersTypeDefs } from './schema/ordersSchema';
+import { productsTypeDefs } from './schema/productsSchema';
+import { orderItemsTypeDefs } from './schema/orderItemsSchema';
 
 const baseTypeDefs = gql`
   type Query
@@ -12,5 +14,7 @@ export const typeDefs = [
   baseTypeDefs,
   userTypeDefs,
   employeesTypeDefs,
-  salesTypeDefs,
+  ordersTypeDefs,
+  productsTypeDefs,
+  orderItemsTypeDefs,
 ];

@@ -1,4 +1,4 @@
-import ProductTable from "@/app/components/ui/products/product-table"
+import OrderTable from "@/app/components/ui/orders/order-table"
 import {
     Heading,
     Text,
@@ -17,17 +17,17 @@ export default function Products() {
                         <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem isCurrentPage>
-                        <BreadcrumbLink href="#" isCurrentPage>Products</BreadcrumbLink>
+                        <BreadcrumbLink href="#" isCurrentPage>Order</BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
                 
-                <Heading>Products</Heading>
+                <Heading>Orders</Heading>
                 <Text className="mt-2 mb-2">
-                    Check out our latest products.
+                    Here you can view all orders placed by customers
                 </Text>
             </div>
             <div className="flex flex-col">
-                <ProductTable />
+                <OrderTable />
             </div>
         </main>
     )

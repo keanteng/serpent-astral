@@ -51,6 +51,7 @@ model Product {
 model Order {
   id          Int         @id @default(autoincrement())
   customer    String
+  date     DateTime
   orderItems  OrderItem[]
 }
 
@@ -60,5 +61,5 @@ model OrderItem {
   productId   Int
   orderId     Int
   product     Product     @relation(fields: [productId], references: [id])
-  order       Order       @relation(fields: [orderId], references: [id])
+  order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
