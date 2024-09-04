@@ -9,11 +9,12 @@
 
 Welcome to Spectral Astral, a web solution to speed up order processing in small and medium goods trading warehouses in Malaysia with [Prisma](https://www.prisma.io/), [NextJS](https://nextjs.org/), [GraphQl-Yoga](https://the-guild.dev/graphql/yoga-server) and [SQLite](https://www.sqlite.org/index.html) database. The UI for the page is powered by [Tailwind CSS](https://tailwindcss.com/) and [Chakra UI](https://v2.chakra-ui.com/).
 
-The project aims to speed up order processing which traditionally done on paper by salesman where a lot of writing is involved. By digitalizing the company product catalogue and order creation, it saves time and effort to handle customers order and it improve the efficiency of business. Moreover, it serves as the foundation for to embrace a more advanced digital adoption across business such as e-invoice generation, logistic planning and warehouse optimization.
+The project aims to speed up order processing which traditionally done on paper by salesman where a lot of writing is involved. By digitalizing the company product catalogue and order creation, it saves time and effort to handle customers order and it improve the efficiency of business. Moreover, it serves as the foundation to embrace a more advanced digital adoption across business such as e-invoice generation, logistic planning and warehouse optimization.
 
 **Table of Contents:**
 
 - [Getting Started ⚡](#getting-started-)
+- [Live Demo ✨](#live-demo-)
 - [Demonstration 💫](#demonstration-)
 - [CRUD 🔨](#crud-)
 - [Progress 🪫](#progress-)
@@ -37,6 +38,12 @@ You can also use my script for fast deployement, make sure your Prisma is config
 ./npm_auto.sh
 ```
 
+## Live Demo ✨
+
+https://codesandbox.io/p/github/keanteng/serpent-astral/main?import=true&embed=1
+
+The demo will be run on sandbox local server and it will take time to start up. Once started, go to port 3000 to view the page.
+
 ## Demonstration 💫
 
 ![alt text](public/readme/image-2.png)
@@ -58,7 +65,7 @@ Performs CRUD on employees data. The UIs includes features such as pagination, i
 
 ### System Gen 2.0 Raodmap
 
-Order creation, simple order setup. Search and query optimizatino. 
+Order creation, simple order setup. Search and query optimization. 
 
 ## License 💳
 
